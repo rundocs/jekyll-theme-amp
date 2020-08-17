@@ -1,7 +1,10 @@
-<amp-carousel layout="fixed-height" height="350" type="carousel" class="shadow-box">
+{%- assign size = include.size | default: 350 -%}
+{%- assign type = include.type | default: "carousel" -%}
+
+<amp-carousel layout="fixed-height" height="{{ size }}" type="{{ type }}" class="shadow-box">
     {%- for item in page.carousel -%}
         <a href="{{ item.href }}" target="_blank" title="{{ item.name }}">
-            <amp-img src="{{ item.src }}" alt="{{ item.name }}" width="350" height="350"></amp-img>
+            <amp-img src="{{ item.src }}" alt="{{ item.name }}" width="{{ size }}" height="{{ size }}"></amp-img>
         </a>
     {%- endfor -%}
 </amp-carousel>

@@ -71,7 +71,7 @@ carousel:
 ---
 
 # Your awesome title
-{% raw %}{% include carousel.liquid %}{% endraw %}
+{% raw %}{% include carousel.liquid type="" size="" %}{% endraw %}
 {% raw %}{% include image.liquid name="[alt]-[width]x[height]" %}{% endraw %}
 ```
 
