@@ -1,0 +1,11 @@
+{%- for image in page.image -%}
+    {%- if image.first == include.name -%}
+        {%- assign block = image.first | split: "-" | last | split: "x" -%}
+        <amp-img
+            class="shadow-box"
+            alt="{{ image.first | split: '-' | first }}"
+            src="{{ image.last }}"
+            width="{{ image.first | split: '-' | last | split: 'x' | first }}px"
+            height="{{ image.first | split: 'x' | last }}px"></amp-img>
+    {%- endif -%}
+{%- endfor -%}

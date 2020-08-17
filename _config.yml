@@ -1,0 +1,21 @@
+title: Your awesome title
+lang: en
+description: Write an awesome description for your new site here
+
+theme: null
+
+sass:
+  style: compressed
+
+readme_index:
+  with_frontmatter: true
+
+exclude:
+  - Makefile
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - node_modules
+  - package.json
+  - package-lock.json
+  - jekyll-theme-amp.gemspec
