@@ -16,11 +16,6 @@ layout: plugins/compress
 {%- assign schema_modi = site.time | date_to_xmlschema -%}
 {%- assign schema_curl = page.url  | absolute_url | xml_escape -%}
 
-{%- capture site_scss -%}
-    @import "jekyll-theme-amp.scss";
-    {% include assets/custom.scss %} {{ site.scss }}
-{%- endcapture -%}
-
 <!doctype html>
 <html amp lang="{{ lang }}">
 
@@ -55,47 +50,23 @@ layout: plugins/compress
     <noscript>
         <style amp-boilerplate>{{ "@import 'amp.noscript.scss'" | scssify | strip_newlines }}</style>
     </noscript>
-    <style amp-custom>{{ site_scss | scssify | strip_newlines | replace: " !important", "" }}</style>
+    <style amp-custom>{{ "@import 'jekyll-theme-amp.scss';" | append: site.scss | scssify | strip_newlines | replace: " !important", "" }}</style>
     <!-- script -->
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "mainEntityOfPage": {
-                "@type": "WebPage",
-                "@id": "{{ schema_curl }}"
-            },
-            "headline": "{{ page.title | truncate: 110 }}",
-            "image": [
-                {%- for image in page.image -%}
-                    "{{ image.last }}"{% unless forloop.last %},{% endunless %}
-                {%- endfor -%}
-            ],
-            "author": {
-                "@type": "Person",
-                "name": "{{ author }}"
-            },
-            "datePublished": "{{ schema_date }}",
-            "dateModified": "{{ schema_modi }}",
-            "publisher": {
-                "@type": "Organization",
-                "name": "{{ site.title }}",
-                "logo": {
-                    "@type": "ImageObject",
-                    "url": "{{ site.logo | default: 'assets/schema.600x60.png' | absolute_url | xml_escape }}"
-                }
-            },
-            "description": "{{ description }}"
-        }
-    </script>
+    {% include schema/common.liquid %}
+    {% if page.url != "/" %}
+        {% include schema/breadcrumb.liquid %}
+    {% endif %}
     <script async src="https://cdn.ampproject.org/v0.js"></script>
+    {% if page.carousel %}
+        {% include schema/carousel.liquid %}
+        <script async custom-element="amp-carousel" src="https://cdn.ampproject.org/v0/amp-carousel-0.1.js"></script>
+    {% endif %}
 </head>
 
 <body>
     <main class="container">
         <article class="markdown-body">{{ content }}</article>
     </main>
-    <script>{% include assets/custom.js %} {{ site.script }}</script>
 </body>
 
 </html>

@@ -1,0 +1,7 @@
+<amp-carousel layout="fixed-height" height="350" type="carousel" class="shadow-box">
+    {%- for item in page.carousel -%}
+        <a href="{{ item.href }}" target="_blank" title="{{ item.name }}">
+            <amp-img src="{{ item.src }}" alt="{{ item.name }}" width="350" height="350"></amp-img>
+        </a>
+    {%- endfor -%}
+</amp-carousel>

@@ -1,0 +1,16 @@
+<!-- carousel -->
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "itemListElement": [
+            {%- for item in page.carousel -%}
+            {
+                "@type": "ListItem",
+                "position": {{ forloop.index }},
+                "url": "{{ item.href }}"
+            }{% unless forloop.last %},{% endunless %}
+            {%- endfor -%}
+        ]
+    }
+</script>

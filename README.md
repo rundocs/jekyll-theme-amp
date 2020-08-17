@@ -9,7 +9,7 @@ image:
 
 Just another jekyll docs theme compatible with GitHub Pages and AMP
 
-{% include image name="jekyll_theme_amp_screenshot-728x212" %}
+{% include image.liquid name="jekyll_theme_amp_screenshot-728x212" %}
 
 ## Installing
 ```yml
@@ -36,6 +36,7 @@ lang: # default: en
 description: Write an awesome description for your new site here
 
 logo: # default: assets/schema.600x60.png
+scss:
 
 meta:
   key1: value1
@@ -48,9 +49,6 @@ meta:
 
 readme_index:
   with_frontmatter: true
-
-scss: # or via file "_includes/assets/custom.scss"
-script: # or via file "_includes/assets/custom.js"
 ```
 
 ## Writing
@@ -62,10 +60,19 @@ image:
   .
   .
   .
+
+carousel:
+  - name:
+    src:
+    href:
+  .
+  .
+  .
 ---
 
 # Your awesome title
-{% raw %}{% include image name="[alt]-[width]x[height]" %}{% endraw %}
+{% raw %}{% include carousel.liquid %}{% endraw %}
+{% raw %}{% include image.liquid name="[alt]-[width]x[height]" %}{% endraw %}
 ```
 
 ## Debug
